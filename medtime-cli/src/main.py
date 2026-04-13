@@ -1,5 +1,5 @@
 import argparse
-from medication import MedicationManager
+from src.medication import MedicationManager
 
 manager = MedicationManager()
 
