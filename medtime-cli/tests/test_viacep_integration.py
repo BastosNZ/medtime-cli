@@ -3,6 +3,7 @@ Testes de integração da API ViaCEP.
 """
 
 import pytest
+import requests
 from unittest.mock import patch, MagicMock
 from src.viacep_api import ViaCEPAPI
 
@@ -10,10 +11,9 @@ from src.viacep_api import ViaCEPAPI
 class TestViaCEPAPI:
     """Testes para a integração com ViaCEP"""
     
-    @patch('requests.get')
+    @patch('src.viacep_api.requests.get')
     def test_search_address_success(self, mock_get):
         """Testa busca de endereço com sucesso"""
-        # Mock da resposta da API
         mock_response = MagicMock()
         mock_response.json.return_value = {
             "cep": "01310-100",
@@ -24,17 +24,15 @@ class TestViaCEPAPI:
         }
         mock_get.return_value = mock_response
         
-        # Executar
         resultado = ViaCEPAPI.search_address("01310-100")
         
-        # Verificar
         assert resultado is not None
         assert resultado["cep"] == "01310-100"
         assert resultado["logradouro"] == "Avenida Paulista"
         assert resultado["localidade"] == "São Paulo"
         assert mock_get.called
     
-    @patch('requests.get')
+    @patch('src.viacep_api.requests.get')
     def test_search_address_not_found(self, mock_get):
         """Testa CEP não encontrado"""
         mock_response = MagicMock()
@@ -45,10 +43,10 @@ class TestViaCEPAPI:
         
         assert resultado is None
     
-    @patch('requests.get')
+    @patch('src.viacep_api.requests.get')
     def test_search_address_connection_error(self, mock_get):
         """Testa erro de conexão"""
-        mock_get.side_effect = Exception("Connection error")
+        mock_get.side_effect = requests.exceptions.ConnectionError("Connection error")
         
         resultado = ViaCEPAPI.search_address("01310-100")
         
