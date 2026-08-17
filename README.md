@@ -1,26 +1,33 @@
-# medtime-cli
-
-"""
 # MedTime
 
-## Problema
-Muitas pessoas esquecem de tomar medicamentos nos horários corretos.
+Aplicação de linha de comando para registrar, listar e remover medicamentos, ajudando a não esquecer os horários corretos.
 
-## Solução
-Aplicação CLI que permite registrar, listar e remover medicamentos.
+Projeto acadêmico — Engenharia de Software, UniCEUB.
 
 ## Instalação
+
+```bash
 pip install -r requirements.txt
+```
 
 ## Execução
+
+```bash
 python src/main.py
+```
 
 ## Testes
+
+```bash
 pytest
+```
 
 ## Lint
+
+```bash
 ruff check .
+```
 
 ## Versão
+
 1.0.0
-"""
