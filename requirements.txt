@@ -1,3 +1,6 @@
-pytest
-ruff
-requests
+# Dependência de execução
+requests>=2.31
+
+# Desenvolvimento (testes e lint)
+pytest>=8.0
+ruff>=0.6
